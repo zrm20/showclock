@@ -4,3 +4,7 @@ export const colors = {
   subHeadColor: '#bea483',
   bodyColor: '#fff'
 };
+
+export const fonts ={
+  main: 'Helvetica Neue'
+}

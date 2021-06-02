@@ -1,11 +1,12 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
-import { colors } from '../styles/globalStyles';
+import { colors, fonts } from '../styles/globalStyles';
 
-export default function AddTime({ name, size }) {
+export default function AddTime({ name, eventTimeSetter, size = 300, pressHandler }) {
+
   return (
-    <TouchableOpacity style={styles.container(size)}>
+    <TouchableOpacity style={styles.container(size)} onPress={() => pressHandler(name, eventTimeSetter)}>
       <Text style={styles.text(name, size)}>Add {name} Time</Text>
       <AntDesign name="pluscircleo" size={size / 8.5} color={colors.bodyColor} />
     </TouchableOpacity>
@@ -42,7 +43,7 @@ const styles = StyleSheet.create({
       {
       color: colors.bodyColor,
       fontSize: (size / 300) * textSize,
-      fontFamily: 'Helvetica Neue',
+      fontFamily: fonts.main,
       margin: (100 / textSize)
       }
     )

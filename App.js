@@ -1,16 +1,28 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
-import AddTime from './components/AddTime';
+import HomeScreen from './screens/HomeScreen';
+import TimeDetails from './screens/TimeDetails';
 import { colors } from './styles/globalStyles';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
+//Single page on app with stack of screens
+const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Image style={styles.image} source={require('./assets/JM_Logo.png')}/>
-      <AddTime name='Changeover' size={300}/>
-      <AddTime name='Show' size={300}/>
-      <AddTime name='Curfew' size={300}/>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator
+        screenOptions= {{
+          headerStyle: {
+            backgroundColor: colors.headlineColor,
+          }
+        }}
+      >
+        <Stack.Screen name="Home" component={HomeScreen} options={{headerShown: false}}/>
+        <Stack.Screen name="Details" component={TimeDetails} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
@@ -20,11 +32,4 @@ const styles = StyleSheet.create({
     backgroundColor: colors.backgroundColor,
     alignItems: 'center',
   },
-  bodyText: {
-    color: colors.bodyColor,
-  },
-  image: {
-    width: '90%',
-    resizeMode: 'contain'
-  }
 });
